@@ -38,3 +38,69 @@ Imagine you have a sorted list of numbers from 1 to 100 and you're looking for t
 
 This is the process of binary search, continuously narrowing down the section of the list where the number could be until you've found it or exhausted all possibilities.
 
+# Binary Search and Solve Functions Flowchart (Recursive)
+
+## 1. Start
+1. Read inputs:
+    - `N` (size of array `S`)
+    - `M` (size of array `X`)
+    - Array `S` (sorted array of integers)
+    - Array `X` (array of integers to search in `S`)
+
+## 2. Function `solve(n, m, S, X)`
+- **Input:** `n` (size of `S`), `m` (size of `X`), `S` (array), `X` (array)
+- **Process:**
+    - For `i = 0 to m-1`:
+        - Call `binsearch(0, n-1, X[i], S)`
+        - Print result with a space
+    - Print newline
+
+## 3. Function `binsearch(low, high, x, S)`
+- **Input:** `low`, `high`, `x` (target), `S` (array)
+- **Process:**
+    - If `low > high`:
+        - Return `-1`
+    - Else:
+        - Calculate `mid = (low + high) // 2`
+        - If `x == S[mid]`:
+            - Return `mid`
+        - Elif `x < S[mid]`:
+            - Call `binsearch(low, mid-1, x, S)`
+        - Else:
+            - Call `binsearch(mid+1, high, x, S)`
+
+## Flowchart Representation
+
+# Binary Search and Solve Functions Flowchart (Iterable)
+
+## 1. Start
+1. Read inputs:
+    - `N` (size of array `S`)
+    - `M` (size of array `X`)
+    - Array `S` (sorted array of integers)
+    - Array `X` (array of integers to search in `S`)
+
+## 2. Function `solve(n, m, S, X)`
+- **Input:** `n` (size of `S`), `m` (size of `X`), `S` (array), `X` (array)
+- **Process:**
+    - For `i = 0 to m-1`:
+        - Call `binsearch(0, n-1, X[i], S)`
+        - Print result with a space
+    - Print newline
+
+## 3. Function `binsearch(low, high, x, S)`
+- **Input:** `low`, `high`, `x` (target), `S` (array)
+- **Process:**
+    - If `low > high`:
+        - Return `-1`
+    - Else:
+        - Calculate `mid = (low + high) // 2`
+        - If `x == S[mid]`:
+            - Return `mid`
+        - Elif `x < S[mid]`:
+            - Call `binsearch(low, mid-1, x, S)`
+        - Else:
+            - Call `binsearch(mid+1, high, x, S)`
+
+## Flowchart Representation
+
