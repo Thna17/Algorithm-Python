@@ -35,7 +35,6 @@ When the element `x` is located at `S[mid]`: T(N) = 1
 
 When the element `x` is greater than the maximum value in `S`: T(N) = 1 + T(N ÷ 2)
 
-
 In this case, we need to continue searching until we discover that `x` does not exist in `S`.
 
 In other words, during recursive calls, we perform the comparison operation between `x` and the mid-value of `S`.
@@ -53,26 +52,26 @@ At this point, we perform a recursive call that reduces the search range to `n/2
 ```
 [Start]
    |
-[Initialize low = 0]
-[Initialize high = n - 1]
-[Initialize cnt = 0]
+[Initialize low = 0, high = n - 1, cnt = 0]
    |
-+-----------------------------+
-|      While low <= high      |
-|            |                |
-| [Compute mid = (low + high) // 2]
-|            |                |
-|    x == S[mid] ?            |
-|        /    \               |
-|      Yes     No             |
-|      /         \            |
-| [Return mid]   x < S[mid] ? |
-|                /    \       |
-|              Yes     No     |
-|             /         \     |
-| [Set high = mid - 1] [Set low = mid + 1]
-|            |                |
-+-----------------------------+
++-------------------------------------+
+|         While low <= high           |
+|                  |                  |
+|      [Calculate mid = (low + high) // 2]
+|                  |                  |
+|            [Increment cnt]          |
+|                  |                  |
+|        x == S[mid]?                 |
+|             /  \                    |
+|         Yes     No                  |
+|        /         \                  |
+|   [Return cnt]   x < S[mid]?        |
+|                  /  \               |
+|              Yes     No             |
+|             /         \             |
+| [high = mid - 1]   [low = mid + 1]  |
+|                  |                  |
++-------------------------------------+
    |
 [Return cnt]
 ```
@@ -82,23 +81,73 @@ At this point, we perform a recursive call that reduces the search range to `n/2
 ```
 [Start]
    |
-[Input N and M]
+[Input N, M]
    |
-[Input S and X]
+[Input S, X]
    |
-[Call solve(N, M, S, X)]
+[Initialize total = 0]
    |
-+-----------------------------+
-| [Initialize total = 0]      |
-|    For each i in 0 to m - 1  |
-|            |                |
-| [Call binsearch(X[i], n, S)]|
-|            |                |
-| [Add result to total]       |
-|            |                |
-| [Print total]               |
-+-----------------------------+
++-------------------------------+
+|     Loop through i in 0 to m-1 |
+|               |                |
+| [Call binsearch(X[i], n, S)]   |
+|               |                |
+| [Add result to total]          |
++-------------------------------+
+   |
+[Print total]
    |
 [End]
 ```
+
+### Solution 2: Recursive
+
+#### Flowchart
+
+**Binsearch Function Flowchart**
+
+```
+[Start]
+   |
+[low > high?]
+   |       \
+  Yes      No
+   |         \
+[Return 0]    [mid = (low + high) // 2]
+              |
+       [x == S[mid]?]
+              |       \
+            Yes       No
+              |         \
+        [Return 1]      [x < S[mid]?]
+                           |       \
+                          Yes      No
+                           |         \
+            [Return 1 + binsearch(low, mid - 1, x, S)]
+                           |
+            [Return 1 + binsearch(mid + 1, high, x, S)]
+```
+
+**Solve Function Flowchart**
+
+```
+[Start]
+   |
+[Input N, M]
+   |
+[Input S, X]
+   |
+[Initialize total = 0]
+   |
+[Loop through i in 0 to m-1]
+   |
+[Call binsearch(0, n-1, X[i], S)]
+   |
+[Add result to total]
+   |
+[Print total]
+   |
+[End]
+```
+
 ---
